@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.1.2
+
+### Patch Changes
+
+- fc05f47: Fix the check for versions prior to artifact name change
+
 ## 0.1.1
 
 ### Patch Changes
