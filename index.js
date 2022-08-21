@@ -8,11 +8,20 @@ async function setup() {
     const healthcheck = core.getInput('healthcheck')
     const timeout = core.getInput('timeout')
 
-    const landoInstaller = await tc.downloadTool(await getDownloadURL(version));
+    const landoInstaller = await getDownloadURL(version)
+    core.info(`Downloading lando from ${landoInstaller}`)
 
-    cp.exec(`sudo dpkg -i ${landoInstaller}`)
-    cp.exec(`lando version`)
-    cp.exec('lando start')
+    const landoInstallerPath = await tc.downloadTool(landoInstaller);
+
+    cp.exec(`sudo dpkg -i ${landoInstallerPath}`, (err, stdout) => {
+        core.debug(stdout)
+    })
+    cp.exec(`lando version`, (err, stdout) => {
+        core.info(stdout)
+    })
+    cp.exec('lando start', (err, stdout) => {
+        core.info(stdout)
+    })
 
     if (healthcheck) {
         await waitOn({
