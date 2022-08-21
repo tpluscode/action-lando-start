@@ -20,3 +20,5 @@ jobs:
       - uses: tpluscode/action-autotag@min-version-21
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+        with:
+          tag_prefix: "v"
