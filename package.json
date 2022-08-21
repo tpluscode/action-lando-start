@@ -1,5 +1,6 @@
 {
   "name": "setup-lando",
+  "version": "0.0.0",
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
@@ -11,6 +12,7 @@
     "wait-on": "^6.0.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.24.3",
     "@vercel/ncc": "^0.34.0",
     "husky": "^8.0.1"
   }
