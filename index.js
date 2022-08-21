@@ -2,6 +2,9 @@ const core = require('@actions/core')
 const tc = require('@actions/tool-cache')
 const cp = require('child_process')
 const waitOn = require('wait-on')
+const { promisify } = require('util')
+
+const exec = promisify(cp.exec)
 
 async function setup() {
     const version = core.getInput('version')
@@ -13,9 +16,13 @@ async function setup() {
 
     const landoInstallerPath = await tc.downloadTool(landoInstaller);
 
-    core.info(cp.execSync(`sudo dpkg -i ${landoInstallerPath}`).toString())
-    core.info(cp.execSync(`lando version`).toString())
-    core.info(cp.execSync('lando start').toString())
+    await core.group('Installing Lando', async function installLando() {
+        core.info(await exec(`sudo dpkg -i ${landoInstallerPath}`))
+    })
+    core.info(`Lando version: ${cp.execSync(`lando version`)}`)
+    await core.group('Starting app', async function installLando() {
+        core.info(await exec('lando start'))
+    })
 
     if (healthcheck) {
         await waitOn({

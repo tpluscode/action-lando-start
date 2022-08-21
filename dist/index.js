@@ -8,6 +8,9 @@ const core = __nccwpck_require__(2186)
 const tc = __nccwpck_require__(7784)
 const cp = __nccwpck_require__(2081)
 const waitOn = __nccwpck_require__(9037)
+const { promisify } = __nccwpck_require__(3837)
+
+const exec = promisify(cp.exec)
 
 async function setup() {
     const version = core.getInput('version')
@@ -19,9 +22,13 @@ async function setup() {
 
     const landoInstallerPath = await tc.downloadTool(landoInstaller);
 
-    core.info(cp.execSync(`sudo dpkg -i ${landoInstallerPath}`).toString())
-    core.info(cp.execSync(`lando version`).toString())
-    core.info(cp.execSync('lando start').toString())
+    await core.group('Installing Lando', async function installLando() {
+        core.info(await exec(`sudo dpkg -i ${landoInstallerPath}`))
+    })
+    core.info(`Lando version: ${cp.execSync(`lando version`)}`)
+    await core.group('Starting app', async function installLando() {
+        core.info(await exec('lando start'))
+    })
 
     if (healthcheck) {
         await waitOn({
