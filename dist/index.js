@@ -42,8 +42,13 @@ async function setup() {
 }
 
 async function getDownloadURL(version) {
+    let arch = 'x64-'
+    if (version < '3.4.0') {
+        arch = ''
+    }
+
     if (version) {
-        return `https://github.com/lando/lando/releases/download/${version}/lando-x64-${version}.deb`
+        return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
     }
 
     const res = await fetch('https://api.github.com/repos/lando/lando/releases/latest')
