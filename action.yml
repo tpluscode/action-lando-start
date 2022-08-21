@@ -6,6 +6,13 @@ inputs:
   version:
     description: Lando release version
     required: false
+  healthcheck:
+    description: URL to await
+    required: false
+  timeout:
+    description: Time in milliseconds to wait for lando app to start (default 10s)
+    required: false
+    default: "10000"
 
 runs:
   using: node16
