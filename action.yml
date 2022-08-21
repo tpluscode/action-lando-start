@@ -1,0 +1,14 @@
+name: 'Set up Lando'
+author: 'Tomasz Pluskiewicz'
+description: 'Installs lando and starts the services'
+
+inputs:
+  version:
+    description: Lando release version
+    required: false
+    
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.version }}
