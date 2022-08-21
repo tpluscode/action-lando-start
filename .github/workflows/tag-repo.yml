@@ -1,0 +1,22 @@
+name: Tag repository
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tag-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.MAZE_LINKER_APP_ID }}
+          private_key: ${{ secrets.MAZE_LINKER_PRIVATE_KEY }}
+
+      - uses: tpluscode/action-autotag@min-version-21
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
