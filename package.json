@@ -1,0 +1,8 @@
+{
+  "name": "setup-lando",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/tool-cache": "^2.0.1"
+  }
+}

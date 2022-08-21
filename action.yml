@@ -6,9 +6,7 @@ inputs:
   version:
     description: Lando release version
     required: false
-    
+
 runs:
-  using: docker
-  image: Dockerfile
-  args:
-    - ${{ inputs.version }}
+  using: node16
+  main: "main.js"
