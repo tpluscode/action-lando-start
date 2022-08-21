@@ -1,9 +1,17 @@
 {
   "name": "setup-lando",
   "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "precommit": "ncc build index.js -o dist --source-map --license licenses.txt"
+  },
   "dependencies": {
     "@actions/core": "^1.9.1",
     "@actions/tool-cache": "^2.0.1",
     "wait-on": "^6.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0",
+    "husky": "^8.0.1"
   }
 }
