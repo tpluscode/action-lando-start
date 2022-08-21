@@ -44,6 +44,10 @@ async function getDownloadURL(version) {
 
 module.exports = setup
 
+if (require.main === require.cache[eval('__filename')]) {
+    setup();
+}
+
 
 /***/ }),
 

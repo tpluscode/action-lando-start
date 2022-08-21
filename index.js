@@ -37,3 +37,7 @@ async function getDownloadURL(version) {
 }
 
 module.exports = setup
+
+if (require.main === module) {
+    setup();
+}
