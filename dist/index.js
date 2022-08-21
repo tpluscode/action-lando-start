@@ -19,15 +19,9 @@ async function setup() {
 
     const landoInstallerPath = await tc.downloadTool(landoInstaller);
 
-    cp.exec(`sudo dpkg -i ${landoInstallerPath}`, (err, stdout) => {
-        core.debug(stdout)
-    })
-    cp.exec(`lando version`, (err, stdout) => {
-        core.info(stdout)
-    })
-    cp.exec('lando start', (err, stdout) => {
-        core.info(stdout)
-    })
+    core.info(cp.execSync(`sudo dpkg -i ${landoInstallerPath}`).toString())
+    core.info(cp.execSync(`lando version`).toString())
+    core.info(cp.execSync('lando start').toString())
 
     if (healthcheck) {
         await waitOn({
