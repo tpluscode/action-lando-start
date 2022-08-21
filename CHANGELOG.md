@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.1.1
+
+### Patch Changes
+
+- 299bd1b: Branding+tagging
+
 ## 0.1.0
 
 ### Minor Changes
