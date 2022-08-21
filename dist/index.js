@@ -43,7 +43,7 @@ async function setup() {
 
 async function getDownloadURL(version) {
     let arch = 'x64-'
-    if (version < '3.4.0') {
+    if (version < 'v3.3.0') {
         arch = ''
     }
 
