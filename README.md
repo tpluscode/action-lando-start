@@ -45,7 +45,7 @@ After starting the app, wait 30s for `https://api.my-project.lndo.site`
 jobs:
   test:
     steps:
-      - uses: tpluscode/action-setup-lando@
+      - uses: tpluscode/action-setup-lando@master
         with:
           healthcheck: https://api.my-project.lndo.site
           timeout: 30000 
@@ -57,7 +57,7 @@ jobs:
 jobs:
   test:
     steps:
-      - uses: tpluscode/action-setup-lando@
+      - uses: tpluscode/action-setup-lando@master
         with:
           version: v3.4.0
 ```
