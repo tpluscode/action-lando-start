@@ -53,7 +53,7 @@ function promisifyExec(command) {
    return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
             core.info(stdout)
-            core.error(stderr)
+            core.info(stderr)
 
             if (error) {
                 reject(error)
