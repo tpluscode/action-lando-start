@@ -11,14 +11,14 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - uses: '..'
+      - uses: ./
       - run: curl https://setup-lando.lndo.site
   install-older:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - uses: '..'
+      - uses: ./
         with:
           version: v3.0.26
       - run: curl https://setup-lando.lndo.site
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - uses: '..'
+      - uses: ./
         with:
           healthcheck: https://setup-lando.lndo.site
       - run: curl https://setup-lando.lndo.site
