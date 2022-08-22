@@ -9,7 +9,7 @@ const tc = __nccwpck_require__(7784)
 const cp = __nccwpck_require__(2081)
 const waitOn = __nccwpck_require__(9037)
 const { promisify } = __nccwpck_require__(3837)
-const fetch = __nccwpck_require__(4429)
+const nodeFetch = __nccwpck_require__(4429)
 
 const exec = promisify(cp.exec)
 
@@ -52,7 +52,7 @@ async function getDownloadURL(version) {
         return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
     }
 
-    const res = await fetch('https://api.github.com/repos/lando/lando/releases/latest')
+    const res = await nodeFetch.default('https://api.github.com/repos/lando/lando/releases/latest')
     const releases = await res.json()
 
     return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url

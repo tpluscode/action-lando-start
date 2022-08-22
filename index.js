@@ -3,7 +3,7 @@ const tc = require('@actions/tool-cache')
 const cp = require('child_process')
 const waitOn = require('wait-on')
 const { promisify } = require('util')
-const fetch = require('node-fetch')
+const nodeFetch = require('node-fetch')
 
 const exec = promisify(cp.exec)
 
@@ -46,7 +46,7 @@ async function getDownloadURL(version) {
         return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
     }
 
-    const res = await fetch('https://api.github.com/repos/lando/lando/releases/latest')
+    const res = await nodeFetch.default('https://api.github.com/repos/lando/lando/releases/latest')
     const releases = await res.json()
 
     return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url
