@@ -1,0 +1,4 @@
+name: setup-lando
+recipe: lamp
+config:
+  webroot: .

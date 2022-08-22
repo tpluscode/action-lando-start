@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  install-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - uses: '..'
+      - run: curl https://setup-lando.lndo.site
+  install-older:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - uses: '..'
+        with:
+          version: v3.0.26
+      - run: curl https://setup-lando.lndo.site
+  with-healthchek:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - uses: '..'
+        with:
+          healthcheck: https://setup-lando.lndo.site
+      - run: curl https://setup-lando.lndo.site
