@@ -45,6 +45,8 @@ After starting the app, wait 30s for `https://api.my-project.lndo.site`
 jobs:
   test:
     steps:
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.4
       - uses: tpluscode/action-setup-lando@
         with:
           healthcheck: https://api.my-project.lndo.site
@@ -57,6 +59,8 @@ jobs:
 jobs:
   test:
     steps:
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.4
       - uses: tpluscode/action-setup-lando@
         with:
           version: v3.4.0

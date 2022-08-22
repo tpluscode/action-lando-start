@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.4
       - uses: ./
       - run: curl https://setup-lando.lndo.site
   install-older:
@@ -18,6 +20,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.4
       - uses: ./
         with:
           version: v3.0.26
@@ -27,6 +31,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.4
       - uses: ./
         with:
           healthcheck: https://setup-lando.lndo.site
