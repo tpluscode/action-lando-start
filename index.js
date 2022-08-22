@@ -1,10 +1,8 @@
 const core = require('@actions/core')
 const tc = require('@actions/tool-cache')
-const cp = require('child_process')
+const { exec, execSync } = require('child_process')
 const waitOn = require('wait-on')
-const { promisify } = require('util')
-
-const exec = promisify(cp.exec)
+const nodeFetch = require('node-fetch')
 
 async function setup() {
     const version = core.getInput('version')
@@ -17,11 +15,11 @@ async function setup() {
     const landoInstallerPath = await tc.downloadTool(landoInstaller);
 
     await core.group('Installing Lando', async function installLando() {
-        core.info(await exec(`sudo dpkg -i ${landoInstallerPath}`))
+        await promisifyExec( `sudo dpkg -i ${landoInstallerPath}`)
     })
-    core.info(`Lando version: ${cp.execSync(`lando version`)}`)
+    core.info(`Lando version: ${execSync(`lando version`)}`)
     await core.group('Starting app', async function installLando() {
-        core.info(await exec('lando start'))
+        await promisifyExec('lando start')
     })
 
     if (healthcheck) {
@@ -45,10 +43,25 @@ async function getDownloadURL(version) {
         return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
     }
 
-    const res = await fetch('https://api.github.com/repos/lando/lando/releases/latest')
+    const res = await nodeFetch.default('https://api.github.com/repos/lando/lando/releases/latest')
     const releases = await res.json()
 
     return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url
+}
+
+function promisifyExec(command) {
+   return new Promise((resolve, reject) => {
+        exec(command, (error, stdout, stderr) => {
+            core.info(stdout)
+            core.info(stderr)
+
+            if (error) {
+                reject(error)
+            } else {
+                resolve()
+            }
+        })
+    })
 }
 
 module.exports = setup
