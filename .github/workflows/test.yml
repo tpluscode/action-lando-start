@@ -14,7 +14,7 @@ jobs:
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.4
       - uses: ./
-      - run: curl https://setup-lando.lndo.site
+      - run: curl http://setup-lando.lndo.site
   install-older:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +25,7 @@ jobs:
       - uses: ./
         with:
           version: v3.0.26
-      - run: curl https://setup-lando.lndo.site
+      - run: curl http://setup-lando.lndo.site
   with-healthchek:
     runs-on: ubuntu-latest
     steps:
@@ -36,4 +36,4 @@ jobs:
       - uses: ./
         with:
           healthcheck: https://setup-lando.lndo.site
-      - run: curl https://setup-lando.lndo.site
+      - run: curl http://setup-lando.lndo.site
