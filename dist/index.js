@@ -6,12 +6,9 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 
 const core = __nccwpck_require__(2186)
 const tc = __nccwpck_require__(7784)
-const cp = __nccwpck_require__(2081)
+const { exec, execSync } = __nccwpck_require__(2081)
 const waitOn = __nccwpck_require__(9037)
-const { promisify } = __nccwpck_require__(3837)
 const nodeFetch = __nccwpck_require__(4429)
-
-const exec = promisify(cp.exec)
 
 async function setup() {
     const version = core.getInput('version')
@@ -24,11 +21,11 @@ async function setup() {
     const landoInstallerPath = await tc.downloadTool(landoInstaller);
 
     await core.group('Installing Lando', async function installLando() {
-        core.info(await exec(`sudo dpkg -i ${landoInstallerPath}`))
+        await promisifyExec( `sudo dpkg -i ${landoInstallerPath}`)
     })
-    core.info(`Lando version: ${cp.execSync(`lando version`)}`)
+    core.info(`Lando version: ${execSync(`lando version`)}`)
     await core.group('Starting app', async function installLando() {
-        core.info(await exec('lando start'))
+        await promisifyExec('lando start')
     })
 
     if (healthcheck) {
@@ -56,6 +53,21 @@ async function getDownloadURL(version) {
     const releases = await res.json()
 
     return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url
+}
+
+function promisifyExec(command) {
+   return new Promise((resolve, reject) => {
+        exec(command, (error, stdout, stderr) => {
+            core.info(stdout)
+            core.error(stderr)
+
+            if (error) {
+                reject(error)
+            } else {
+                resolve()
+            }
+        })
+    })
 }
 
 module.exports = setup
