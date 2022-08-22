@@ -12,6 +12,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16
       - run: yarn
       - uses: ./
       - run: curl https://setup-lando.lndo.site
@@ -21,6 +23,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16
       - run: yarn
       - uses: ./
         with:
@@ -32,6 +36,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16
       - run: yarn
       - uses: ./
         with:
