@@ -3,6 +3,7 @@ const tc = require('@actions/tool-cache')
 const cp = require('child_process')
 const waitOn = require('wait-on')
 const { promisify } = require('util')
+const fetch = require('node-fetch')
 
 const exec = promisify(cp.exec)
 
