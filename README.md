@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.4
-      - uses: tpluscode/action-setup-lando@
+      - uses: tpluscode/action-setup-lando@master
         with:
           healthcheck: https://api.my-project.lndo.site
           timeout: 30000 
@@ -61,7 +61,7 @@ jobs:
     steps:
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.4
-      - uses: tpluscode/action-setup-lando@
+      - uses: tpluscode/action-setup-lando@master
         with:
           version: v3.4.0
 ```

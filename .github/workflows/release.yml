@@ -12,6 +12,12 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v2
+    - name: Generate token
+      id: generate_token
+      uses: tibdex/github-app-token@v1
+      with:
+        app_id: ${{ secrets.MAZE_LINKER_APP_ID }}
+        private_key: ${{ secrets.MAZE_LINKER_PRIVATE_KEY }}
     - uses: ncipollo/release-action@v1
       with:
-        token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+        token: ${{ steps.generate_token.outputs.token }}
