@@ -1,5 +1,12 @@
 # setup-lando
 
+## 0.1.3
+
+### Patch Changes
+
+- cfcecf9: Show in readme that docker must be installed in workflow
+- d519376: `[object Object]` was logged instead of proper lando output
+
 ## 0.1.2
 
 ### Patch Changes
