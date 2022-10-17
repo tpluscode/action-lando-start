@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.1.4
+
+### Patch Changes
+
+- 3de534a: Debug output from wait-on
+
 ## 0.1.3
 
 ### Patch Changes
