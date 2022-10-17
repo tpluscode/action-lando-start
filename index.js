@@ -25,7 +25,8 @@ async function setup() {
     if (healthcheck) {
         await waitOn({
             resources: [healthcheck],
-            timeout: parseInt(timeout, 10)
+            timeout: parseInt(timeout, 10),
+            log: true
         }).catch(e => {
             console.error(e)
             process.exit(1)
