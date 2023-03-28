@@ -35,19 +35,22 @@ async function setup() {
 }
 
 async function getDownloadURL(version) {
+    if (!version) {
+        const res = await nodeFetch.default('https://api.github.com/repos/lando/lando/releases/latest')
+        const releases = await res.json()
+        return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url
+    }
+
+    const semver = /^v(?<major>\d+)\.(?<minor>\d+)/.exec(version).groups
+    const major = parseInt(semver.major, 10)
+    const minor = parseInt(semver.minor, 10)
+
     let arch = 'x64-'
-    if (version < 'v3.3.0') {
+    if (major < 3 || (major === 3 && minor < 3)) {
         arch = ''
     }
 
-    if (version) {
-        return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
-    }
-
-    const res = await nodeFetch.default('https://api.github.com/repos/lando/lando/releases/latest')
-    const releases = await res.json()
-
-    return releases.assets.find(asset => asset.name.endsWith('.deb')).browser_download_url
+    return `https://github.com/lando/lando/releases/download/${version}/lando-${arch}${version}.deb`
 }
 
 function promisifyExec(command) {
