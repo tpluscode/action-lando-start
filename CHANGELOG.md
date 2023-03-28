@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.1.5
+
+### Patch Changes
+
+- 0c17591: Download URL wrong when lando version was `3.10` or newer
+
 ## 0.1.4
 
 ### Patch Changes
