@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.2.0
+
+### Minor Changes
+
+- f3020ee: Remove starting lando, which must be deferred to official action [lando/setup-lando](https://docs.lando.dev/install/gha.html)
+
 ## 0.1.5
 
 ### Patch Changes
