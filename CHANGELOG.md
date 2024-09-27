@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.2.1
+
+### Patch Changes
+
+- 9f83179: Renamedd
+
 ## 0.2.0
 
 ### Minor Changes
