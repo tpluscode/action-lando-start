@@ -12,6 +12,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - uses: lando/setup-lando@v3
+        with:
+          lando-version: 3.21.2
       - uses: ./
       - run: curl -I http://setup-lando.lndo.site
   install-older:
@@ -19,7 +21,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - uses: lando/setup-lando@v3
+      - uses: lando/setup-lando@v2
         with:
           lando-version: 3.0.26
       - uses: ./
@@ -30,6 +32,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - uses: lando/setup-lando@v3
+        with:
+          lando-version: 3.21.2
       - uses: ./
         with:
           healthcheck: https://setup-lando.lndo.site
