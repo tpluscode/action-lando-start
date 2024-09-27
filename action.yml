@@ -1,6 +1,6 @@
 name: 'Set up Lando'
 author: 'Tomasz Pluskiewicz'
-description: 'Installs lando and starts the services'
+description: 'Starts lando services'
 
 inputs:
   healthcheck:
