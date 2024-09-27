@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.11
       - uses: lando/setup-lando@v3
       - uses: ./
       - run: curl -I http://setup-lando.lndo.site
@@ -20,9 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.11
+        uses: actions/checkout@v4
       - uses: lando/setup-lando@v3
         with:
           lando-version: 3.0.26
@@ -32,9 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.11
+        uses: actions/checkout@v4
       - uses: lando/setup-lando@v3
       - uses: ./
         with:
