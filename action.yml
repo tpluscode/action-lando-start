@@ -3,9 +3,6 @@ author: 'Tomasz Pluskiewicz'
 description: 'Installs lando and starts the services'
 
 inputs:
-  version:
-    description: Lando release version
-    required: false
   healthcheck:
     description: URL to await
     required: false
@@ -15,7 +12,7 @@ inputs:
     default: "10000"
 
 runs:
-  using: node16
+  using: node20
   main: "dist/index.js"
 
 branding:
