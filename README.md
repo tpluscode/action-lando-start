@@ -21,7 +21,7 @@ jobs:
         uses: lando/setup-lando@v3
         with:
           lando-version: 3.21.2
-      - uses: tpluscode/action-setup-lando@v0.2
+      - uses: tpluscode/action-setup-lando@v0.2.0
 ```
 
 ### Inputs
@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.4
-      - uses: tpluscode/action-setup-lando@v0.2
+      - uses: tpluscode/action-setup-lando@v0.2.0
         with:
           healthcheck: https://api.my-project.lndo.site
           timeout: 30000 
