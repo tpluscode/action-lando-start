@@ -10,29 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.4
-      - uses: ./
-      - run: curl -I http://setup-lando.lndo.site
-  install-older:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.4
-      - uses: ./
+        uses: actions/checkout@v4
+      - uses: KengoTODA/actions-setup-docker-compose@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lando/setup-lando@v3
         with:
-          version: v3.0.26
+          lando-version: 3.21.2
+      - uses: ./
       - run: curl -I http://setup-lando.lndo.site
   with-healthchek:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: setup-docker
-        uses: docker-practice/actions-setup-docker@1.0.4
+        uses: actions/checkout@v4
+      - uses: KengoTODA/actions-setup-docker-compose@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lando/setup-lando@v3
+        with:
+          lando-version: 3.21.2
       - uses: ./
         with:
           healthcheck: https://setup-lando.lndo.site
