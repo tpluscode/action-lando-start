@@ -35,6 +35,7 @@ The inputs this action uses are:
 |:-------------:|:--------:|:-------:|:----------------------------------------------------------:|
 | `healthcheck` | `false`  |   N/A   |      Service URL to await before continuing execution      |
 |   `timeout`   | `false`  | `10000` | Time (in milliseconds) to  wait for `healthcheck` to reply |
+| `ignore-errors`| `false` | `false` |       Continue execution even if `lando start` fails       |
 
 ## Examples
 

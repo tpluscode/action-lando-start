@@ -5,9 +5,10 @@ const waitOn = require('wait-on')
 async function setup() {
     const healthcheck = core.getInput('healthcheck')
     const timeout = core.getInput('timeout')
+    const ignoreErrors = core.getInput('ignore-errors')
 
     await core.group('Starting app', async function () {
-        await promisifyExec('lando start')
+        await promisifyExec('lando start', ignoreErrors)
     })
 
     if (healthcheck) {
@@ -22,16 +23,16 @@ async function setup() {
     }
 }
 
-function promisifyExec(command) {
+function promisifyExec(command, ignoreErrors) {
    return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
             core.info(stdout)
             core.info(stderr)
 
-            if (error) {
-                reject(error)
-            } else {
+            if (!error || ignoreErrors) {
                 resolve()
+            } else {
+                reject(error)
             }
         })
     })
