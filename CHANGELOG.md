@@ -1,5 +1,11 @@
 # setup-lando
 
+## 0.2.2
+
+### Patch Changes
+
+- 4dc569e: Option to ignore errors from `lando start`
+
 ## 0.2.1
 
 ### Patch Changes
