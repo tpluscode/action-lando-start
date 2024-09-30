@@ -5,7 +5,7 @@ const waitOn = require('wait-on')
 async function setup() {
     const healthcheck = core.getInput('healthcheck')
     const timeout = core.getInput('timeout')
-    const ignoreErrors = core.getInput('ignore-errors')
+    const ignoreErrors = core.getInput('ignore-errors') === 'true'
 
     await core.group('Starting app', async function () {
         await promisifyExec('lando start', ignoreErrors)

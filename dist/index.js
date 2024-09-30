@@ -11,7 +11,7 @@ const waitOn = __nccwpck_require__(9037)
 async function setup() {
     const healthcheck = core.getInput('healthcheck')
     const timeout = core.getInput('timeout')
-    const ignoreErrors = core.getInput('ignore-errors')
+    const ignoreErrors = core.getInput('ignore-errors') === 'true'
 
     await core.group('Starting app', async function () {
         await promisifyExec('lando start', ignoreErrors)
