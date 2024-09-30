@@ -1,4 +1,4 @@
-# Set up Lando
+# Start Lando
 
 This action starts [Lando](https://lando.dev) in your workflow.
 
